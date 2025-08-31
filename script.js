@@ -93,18 +93,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- API FETCHING ---
+        // --- API FETCHING ---
     async function fetchProblems() {
         updateStatus('Loading all problems...');
         try {
             const response = await fetch('https://codeforces.com/api/problemset.problems');
             const data = await response.json();
             if (data.status === 'OK') {
-                allProblems = data.result.problems.filter(p => p.rating !== undefined);
-                // Map allProblems to only those present in ladderProblems (matching contestId + index)
+                // --- START OF CHANGES ---
+
+                // 1. Get BOTH the problems array and the statistics array
+                const problems = data.result.problems;
+                const stats = data.result.problemStatistics;
+
+                // 2. Merge them into a single array.
+                // The two arrays are parallel, meaning problems[i] corresponds to stats[i].
+                // We'll create a new array where each object has properties from both.
+                const combinedData = problems.map((problem, index) => {
+                    return {
+                        ...problem, // Copy all properties from the problem object
+                        solvedCount: stats[index].solvedCount // Add the solvedCount from the corresponding stats object
+                    };
+                });
+
+                // 3. Use this new combined array for all subsequent operations.
+                // We still filter out problems that don't have a rating.
+                allProblems = combinedData.filter(p => p.rating !== undefined);
+                
+                // --- END OF CHANGES ---
+
+                // The rest of your logic remains the same!
+                // It now operates on objects that include the solvedCount.
                 const ladderSet = new Set(ladderProblems.map(s => String(s).trim()));
                 const ladderMapped = allProblems.filter(p => ladderSet.has(`${p.contestId}${p.index}`));
-                // Replace allProblems with the mapped subset (if you want to keep full list, assign to a new variable instead)
+                
                 allProblems = ladderMapped;
+                
                 updateStatus('Problems loaded. Select a rating.');
                 applyFiltersAndRender();
             } else {
@@ -235,15 +259,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const isSolved = solvedProblemIds.has(problemId);
             const statusClass = isSolved ? 'status-solved' : 'status-unsolved';
             const statusIcon = isSolved ? '✔ Solved' : '-';
-            console.log(isSolved, problemId, p.name); // Debugging: log solved status and problem ID
             const link = `https://codeforces.com/problemset/problem/${p.contestId}/${p.index}`;
 
             const row = `
                 <tr>
                     <td>${index + 1}</td>
                     <td><a href="${link}" target="_blank" class="problem-link">${p.name}</a></td>
-                    <td>${p.solvedCount || '-'}</td>
-                    <td>${p.rating}</td>
+                    <td>${Number(p.solvedCount) || 0}</td>
                     <td class="${statusClass}">${statusIcon}</td>
                 </tr>
             `;
