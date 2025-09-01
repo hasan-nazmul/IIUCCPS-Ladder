@@ -1,148 +1,518 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IIUCCPS Ladder</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="#" class="nav-logo" title="IIUCCPS Ladder">
-                    <img src="logo.png" alt="IIUCCPS Ladder logo" class="logo-img" width="48" height="48" loading="lazy">
-                </a>
-                <h1>IIUCCPS Ladder</h1>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#" class="nav-link active">Problems</a></li>
-                <!-- Added an ID to this link -->
-                <li><a href="#" id="about-us-link" class="nav-link">About Us</a></li>
-            </ul>
+      <div class="nav-container">
+        <div class="nav-brand">
+          <a href="#" class="nav-logo" title="IIUCCPS Ladder">
+            <img
+              src="logo.png"
+              alt="IIUCCPS Ladder logo"
+              class="logo-img"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+          </a>
+          <h1>IIUCCPS Ladder</h1>
         </div>
+        <ul class="nav-menu">
+          <li><a href="#" class="nav-link active">Problems</a></li>
+          <!-- Added an ID to this link -->
+          <li><a href="#" id="about-us-link" class="nav-link">About Us</a></li>
+        </ul>
+      </div>
     </nav>
 
-    <div class="container">
-        <!-- The rest of your existing content remains unchanged -->
-        <header class="main-header">
-            <nav id="rating-nav" class="rating-nav"></nav>
-            <div class="user-controls">
-                <div class="handle-search">
-                    <input type="text" id="cf-handle-input" placeholder="CF Handle">
-                    <button id="search-btn" aria-label="Search Codeforces handle" title="Search">
-                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                    </button>
-                </div>
+    <!-- START: REVISED BANNER HTML -->
+    <div id="countdown-banner" class="countdown-banner-container">
+      <div class="countdown-banner-content">
+        <!-- Left side: Text, subtext, and timer -->
+        <div class="banner-info">
+          <div class="banner-text-content">
+            <span class="banner-main-text"
+              >competitive programming bootcamp Autumn-25</span
+            >
+            <p class="banner-subtext">
+              Registration is now open! Join us to enhance your problem-solving
+              skills and prepare for upcoming contests.
+            </p>
+          </div>
+          <div id="timer-container" class="timer-container">
+            <div class="time-block">
+              <span id="days" class="time-value">00</span
+              ><span class="time-label">d</span>
             </div>
-        </header>
+            <div class="time-block">
+              <span id="hours" class="time-value">00</span
+              ><span class="time-label">h</span>
+            </div>
+            <div class="time-block">
+              <span id="minutes" class="time-value">00</span
+              ><span class="time-label">m</span>
+            </div>
+            <div class="time-block">
+              <span id="seconds" class="time-value">00</span
+              ><span class="time-label">s</span>
+            </div>
+          </div>
+          <span id="banner-expired-text" class="banner-expired-text"
+            >Registration has closed!</span
+          >
+        </div>
 
-        <main>
-            <div class="filter-controls">
-                <div class="toggle-group">
-                    <label class="switch">
-                        <input type="checkbox" id="tags-toggle" title="Toggle tags filter" aria-label="Toggle tags filter">
-                        <span class="slider"></span>
-                    </label>
-                    <span>Tags</span>
-                </div>
-                <div class="toggle-group hidden" id="logic-toggle-group">
-                    <label class="switch">
-                        <input type="checkbox" id="logic-toggle" title="Toggle filter logic (AND/OR)" aria-label="Toggle filter logic">
-                        <span class="slider"></span>
-                    </label>
-                    <span id="logic-label">Filter Logic: OR</span>
-                </div>
-            </div>
-            <div id="tags-container" class="tags-container hidden"></div>
-            <div class="table-container">
-                <table class="problem-table">
-                    <thead>
-                        <tr><th>#</th><th>Problem</th><th>Solved Count</th><th>Status</th></tr>
-                    </thead>
-                    <tbody id="problem-table-body">
-                        <tr><td colspan="5" class="placeholder">Enter a CF handle and select a rating to start.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div id="status-message" class="status-message"></div>
-        </main>
+        <!-- Right side: Button and close icon -->
+        <div class="banner-actions">
+          <a
+            id="banner-cta"
+            href="https://forms.gle/j76tgch1hHxkZPkH7"
+            target="_blank"
+            class="banner-cta-button"
+            rel="noopener"
+            >Register Now</a
+          >
+          <button
+            id="banner-close"
+            class="banner-close-btn"
+            aria-label="Close"
+            title="Close"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      /* START: NEW "AUTUMN SKY" BANNER CSS */
+      .countdown-banner-container {
+        font-family: 'Inter', sans-serif;
+        /* AUTUMN SKY VIBE: A vertical gradient from dusky blue to sunset orange */
+        background: #2f0d33;
+        background: linear-gradient(
+          90deg,
+          rgba(47, 13, 51, 1) 0%,
+          rgba(188, 32, 52, 1) 24%,
+          rgba(122, 24, 38, 1) 68%
+        );
+        color: rgba(255, 255, 255, 0.95);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        padding: 20px 0;
+        width: 100%;
+        display: block;
+        position: relative;
+        box-shadow: 0 4px 15px rgba(29, 23, 23, 0.4); /* A deeper, warmer shadow */
+      }
+
+      .countdown-banner-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .banner-info {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-grow: 1;
+        flex-wrap: wrap;
+      }
+
+      .banner-text-content {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .banner-main-text {
+        text-transform: uppercase;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.3;
+      }
+
+      .banner-subtext {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 4px 0 0 0;
+        padding: 0;
+        line-height: 1.4;
+      }
+
+      .timer-container {
+        display: flex;
+        gap: 10px;
+        background-color: rgba(0, 0, 0, 0.25);
+        padding: 6px 12px;
+        border-radius: 6px;
+        flex-shrink: 0;
+      }
+
+      .time-block {
+        display: flex;
+        align-items: baseline;
+        gap: 3px;
+      }
+
+      .time-value {
+        font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+        font-size: 1.2rem;
+        font-weight: 600;
+        /* AUTUMN SKY ACCENT: "Harvest Moon" cream color */
+        color: #fdebd0;
+        line-height: 1;
+      }
+
+      .time-label {
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .banner-expired-text {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #fdebd0;
+        display: none;
+      }
+
+      .banner-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-shrink: 0;
+      }
+
+      .banner-cta-button {
+        /* AUTUMN SKY BUTTON: Creamy background with dusky text */
+        background-color: #fdebd0;
+        color: #46344e; /* Dark, muted color from the gradient */
+        padding: 10px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .banner-cta-button:hover {
+        background-color: #fff; /* Brighten on hover */
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .banner-cta-button.disabled {
+        background-color: rgba(0, 0, 0, 0.2);
+        color: rgba(255, 255, 255, 0.4);
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      .banner-close-btn {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 24px;
+        cursor: pointer;
+        transition: color 0.2s ease, transform 0.2s ease;
+      }
+
+      .banner-close-btn:hover {
+        color: #fff;
+        transform: rotate(90deg);
+      }
+
+      @media (max-width: 900px) {
+        .countdown-banner-content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 20px;
+        }
+        .banner-info {
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+        }
+      }
+      /* END: "AUTUMN SKY" BANNER CSS */
+    </style>
+
+    <!-- END OF BANNER -->
+
+    <script>
+      (function () {
+        // Self-invoking function to avoid global scope pollution
+        // --- CONFIGURATION ---
+        // SET YOUR DEADLINE HERE!
+        const registrationEndDate = '2025-09-09T00:00:00';
+        // -------------------
+
+        const bannerContainer = document.getElementById('countdown-banner');
+        if (!bannerContainer) return; // Exit if banner doesn't exist
+
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const closeButton = document.getElementById('banner-close');
+        const ctaButton = document.getElementById('banner-cta');
+        const mainText = document.querySelector('.banner-main-text');
+        const expiredText = document.querySelector('.banner-expired-text');
+        const timerContainer = document.getElementById('timer-container');
+
+        let countdownInterval;
+
+        function formatTime(time) {
+          return time < 10 ? `0${time}` : time;
+        }
+
+        function updateCountdown() {
+          const endDate = new Date(registrationEndDate);
+          const now = new Date();
+          const diff = endDate - now;
+
+          if (diff <= 0) {
+            clearInterval(countdownInterval);
+            if (mainText) mainText.style.display = 'none';
+            if (timerContainer) timerContainer.style.display = 'none';
+            if (expiredText) expiredText.style.display = 'block';
+            if (ctaButton) {
+              ctaButton.textContent = 'Closed';
+              ctaButton.classList.add('disabled');
+            }
+            return;
+          }
+
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          if (daysEl) daysEl.textContent = formatTime(days);
+          if (hoursEl) hoursEl.textContent = formatTime(hours);
+          if (minutesEl) minutesEl.textContent = formatTime(minutes);
+          if (secondsEl) secondsEl.textContent = formatTime(seconds);
+        }
+
+        // Start the countdown
+        countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Run once immediately
+
+        // Handle closing the banner
+        if (closeButton) {
+          closeButton.onclick = function () {
+            bannerContainer.style.display = 'none';
+            clearInterval(countdownInterval); // Stop timer to save resources
+          };
+        }
+      })();
+    </script>
+
+    <!-- END: BANNER -->
+
+    <div class="container">
+      <!-- The rest of your existing content remains unchanged -->
+      <header class="main-header">
+        <nav id="rating-nav" class="rating-nav"></nav>
+        <div class="user-controls">
+          <div class="handle-search">
+            <input type="text" id="cf-handle-input" placeholder="CF Handle" />
+            <button
+              id="search-btn"
+              aria-label="Search Codeforces handle"
+              title="Search"
+            >
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="filter-controls">
+          <div class="toggle-group">
+            <label class="switch">
+              <input
+                type="checkbox"
+                id="tags-toggle"
+                title="Toggle tags filter"
+                aria-label="Toggle tags filter"
+              />
+              <span class="slider"></span>
+            </label>
+            <span>Tags</span>
+          </div>
+          <div class="toggle-group hidden" id="logic-toggle-group">
+            <label class="switch">
+              <input
+                type="checkbox"
+                id="logic-toggle"
+                title="Toggle filter logic (AND/OR)"
+                aria-label="Toggle filter logic"
+              />
+              <span class="slider"></span>
+            </label>
+            <span id="logic-label">Filter Logic: OR</span>
+          </div>
+        </div>
+        <div id="tags-container" class="tags-container hidden"></div>
+        <div class="table-container">
+          <table class="problem-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Problem</th>
+                <th>Solved Count</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="problem-table-body">
+              <tr>
+                <td colspan="5" class="placeholder">
+                  Enter a CF handle and select a rating to start.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="status-message" class="status-message"></div>
+      </main>
     </div>
 
     <!-- ================================== -->
     <!--         NEW ABOUT US MODAL         -->
     <!-- ================================== -->
     <div id="about-modal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <button class="modal-close-btn" title="Close">&times;</button>
-            <h2>About IIUCCPS Ladder</h2>
-            <p>This ladder is a dynamic practice tool designed to help competitive programmers at IIUC (and the broader community) improve their problem-solving skills in a structured way.</p>
-            <p><strong>Features:</strong></p>
-            <ul>
-                <li><strong>Curated Problem List:</strong> The Problems of the Ladder are handpicked by some experienced programmers of IIUCCPS.</li>
-                <li><strong>Live Status Sync:</strong> Enter your Codeforces handle to see which problems you've already solved, updated in real-time.</li>
-                <li><strong>Dynamic Filtering:</strong> Filter problems by rating and tags (like `dp`, `graphs`, `greedy`) to target specific areas for improvement.</li>
-                <li><strong>Clean & Modern UI:</strong> A distraction-free, dark-themed interface to help you focus on what matters: solving problems.</li>
-            </ul>
-        </div>
+      <div class="modal-content">
+        <button class="modal-close-btn" title="Close">&times;</button>
+        <h2>About IIUCCPS Ladder</h2>
+        <p>
+          This ladder is a dynamic practice tool designed to help competitive
+          programmers at IIUC (and the broader community) improve their
+          problem-solving skills in a structured way.
+        </p>
+        <p><strong>Features:</strong></p>
+        <ul>
+          <li>
+            <strong>Curated Problem List:</strong> The Problems of the Ladder
+            are handpicked by some experienced programmers of IIUCCPS.
+          </li>
+          <li>
+            <strong>Live Status Sync:</strong> Enter your Codeforces handle to
+            see which problems you've already solved, updated in real-time.
+          </li>
+          <li>
+            <strong>Dynamic Filtering:</strong> Filter problems by rating and
+            tags (like `dp`, `graphs`, `greedy`) to target specific areas for
+            improvement.
+          </li>
+          <li>
+            <strong>Clean & Modern UI:</strong> A distraction-free, dark-themed
+            interface to help you focus on what matters: solving problems.
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- ================================== -->
-<!--    UPDATED FOOTER WITH CONTACT     -->
-<!-- ================================== -->
-<footer class="app-footer">
-    <div class="footer-container">
+    <!--    UPDATED FOOTER WITH CONTACT     -->
+    <!-- ================================== -->
+    <footer class="app-footer">
+      <div class="footer-container">
         <div class="footer-left">
-            <h3>IIUCCPS Ladder</h3>
-            <p>&copy; 2025 All Rights Reserved</p>
+          <h3>IIUCCPS Ladder</h3>
+          <p>&copy; 2025 All Rights Reserved</p>
         </div>
         <div class="footer-right">
-            <!-- Social and community links -->
-            <a href="https://github.com/hasan-nazmul" target="_blank" rel="noopener noreferrer" title="Source Code on GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.facebook.com/IIUCCPS" target="_blank" rel="noopener noreferrer" title="Join our Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://t.me/+7fsIsDnRO-AxYjA1" target="_blank" rel="noopener noreferrer" title="Telegram Notice Group"><i class="fa-brands fa-telegram"></i></a>
-            
-            <!-- New contact link to trigger the modal -->
-            <a href="#" id="contact-link" title="Contact Us"><i class="fas fa-envelope"></i></a>
-        </div>
-    </div>
-</footer>
+          <!-- Social and community links -->
+          <a
+            href="https://github.com/hasan-nazmul"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Source Code on GitHub"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            href="https://www.facebook.com/IIUCCPS"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Join our Facebook"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a
+            href="https://t.me/+7fsIsDnRO-AxYjA1"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Telegram Notice Group"
+            ><i class="fa-brands fa-telegram"></i
+          ></a>
 
-<!-- ================================== -->
-<!--       NEW CONTACT US MODAL         -->
-<!-- ================================== -->
-    <div id="contact-modal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <button class="modal-close-btn" title="Close">&times;</button>
-            <h2>Contact Us</h2>
-            <p>Have a suggestion or found a bug? Let us know!</p>
-            
-            <!-- IMPORTANT: Replace the action URL with your own Formspree endpoint -->
-            <form id="contact-form" action="https://formspree.io/f/xldlqdga" method="POST">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Your Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <div id="contact-form-status" class="form-status"></div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
+          <!-- New contact link to trigger the modal -->
+          <a href="#" id="contact-link" title="Contact Us"
+            ><i class="fas fa-envelope"></i
+          ></a>
         </div>
+      </div>
+    </footer>
+
+    <!-- ================================== -->
+    <!--       NEW CONTACT US MODAL         -->
+    <!-- ================================== -->
+    <div id="contact-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <button class="modal-close-btn" title="Close">&times;</button>
+        <h2>Contact Us</h2>
+        <p>Have a suggestion or found a bug? Let us know!</p>
+
+        <!-- IMPORTANT: Replace the action URL with your own Formspree endpoint -->
+        <form
+          id="contact-form"
+          action="https://formspree.io/f/xldlqdga"
+          method="POST"
+        >
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <div id="contact-form-status" class="form-status"></div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
     </div>
 
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-</body>
+  </body>
 </html>
