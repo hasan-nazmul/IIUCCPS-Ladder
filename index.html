@@ -40,36 +40,51 @@
       </div>
     </nav>
 
-    <!-- START: REVISED BANNER HTML -->
-    <!-- <div id="countdown-banner" class="countdown-banner-container">
+    <!-- START: BANNER HTML -->
+    <div id="countdown-banner" class="countdown-banner-container">
+      <!-- The animated background layer -->
+      <div class="shooting-stars">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <!-- Your original content, now on top of the animation -->
       <div class="countdown-banner-content">
         <div class="banner-info">
           <div class="banner-text-content">
-            <span class="banner-main-text"
-              >competitive programming bootcamp Autumn-25</span
-            >
+            <span class="banner-main-text">
+              IIUCIANS confirm your spot for ICPC-2025 Dhaka Regional
+              Preliminary Round!
+            </span>
             <p class="banner-subtext">
-              Registration Deadline has been extended!
+              The most prestigious contest of all time is knocking at your door!
+              Don't miss the chance!
             </p>
           </div>
+
           <div id="timer-container" class="timer-container">
             <div class="time-block">
-              <span id="days" class="time-value">00</span
-              ><span class="time-label">d</span>
+              <span id="days" class="time-value">00</span>
+              <span class="time-label">Days</span>
             </div>
             <div class="time-block">
-              <span id="hours" class="time-value">00</span
-              ><span class="time-label">h</span>
+              <span id="hours" class="time-value">00</span>
+              <span class="time-label">Hours</span>
             </div>
             <div class="time-block">
-              <span id="minutes" class="time-value">00</span
-              ><span class="time-label">m</span>
+              <span id="minutes" class="time-value">00</span>
+              <span class="time-label">Minutes</span>
             </div>
             <div class="time-block">
-              <span id="seconds" class="time-value">00</span
-              ><span class="time-label">s</span>
+              <span id="seconds" class="time-value">00</span>
+              <span class="time-label">Seconds</span>
             </div>
           </div>
+
+          <!-- This text is likely hidden by default with JavaScript -->
           <span id="banner-expired-text" class="banner-expired-text"
             >Registration has closed!</span
           >
@@ -78,12 +93,13 @@
         <div class="banner-actions">
           <a
             id="banner-cta"
-            href="https://forms.gle/j76tgch1hHxkZPkH7"
+            href="https://forms.gle/VerYTBT3BGcJTEqP6"
             target="_blank"
             class="banner-cta-button"
             rel="noopener"
-            >Register Now</a
           >
+            Register Now
+          </a>
           <button
             id="banner-close"
             class="banner-close-btn"
@@ -94,166 +110,237 @@
           </button>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <style>
-      /* START: NEW "AUTUMN SKY" BANNER CSS */
-      .countdown-banner-container {
-        font-family: 'Inter', sans-serif;
-        /* AUTUMN SKY VIBE: A vertical gradient from dusky blue to sunset orange */
-        background: #2f0d33;
-        background: linear-gradient(
-          90deg,
-          rgba(47, 13, 51, 1) 0%,
-          rgba(188, 32, 52, 1) 24%,
-          rgba(122, 24, 38, 1) 68%
-        );
-        color: rgba(255, 255, 255, 0.95);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        padding: 20px 0;
-        width: 100%;
-        display: block;
-        position: relative;
-        box-shadow: 0 4px 15px rgba(29, 23, 23, 0.4); /* A deeper, warmer shadow */
+      /* --- Variable Definitions for the ICPC Theme --- */
+      :root {
+        --icpc-deep-blue: #002266;
+        --icpc-dark-bg: #030a1c;
+        --icpc-gold: #ffd700;
+        --icpc-glow-cyan: #00bfff;
+        --icpc-light-grey: #e0e0e0;
       }
 
+      /* --- Main Banner Container (#countdown-banner) --- */
+      .countdown-banner-container {
+        font-family: 'Segoe UI', 'Roboto', sans-serif;
+        background-color: var(--icpc-dark-bg);
+        background-image: radial-gradient(
+          circle at 50% 50%,
+          var(--icpc-deep-blue),
+          var(--icpc-dark-bg) 80%
+        );
+        padding: 25px 30px;
+        position: relative; /* Crucial for layering */
+        overflow: hidden; /* Hides animation overflow */
+        color: white;
+      }
+
+      /* --- Content Wrapper --- */
       .countdown-banner-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 24px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 30px;
+        position: relative; /* Puts content above the stars */
+        z-index: 10;
       }
 
+      /* --- Left Side: Info & Timer --- */
       .banner-info {
         display: flex;
-        align-items: center;
-        gap: 24px;
-        flex-grow: 1;
-        flex-wrap: wrap;
-      }
-
-      .banner-text-content {
-        display: flex;
         flex-direction: column;
+        gap: 20px;
+        text-align: left;
       }
 
       .banner-main-text {
-        text-transform: uppercase;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--icpc-gold);
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        display: block; /* Allows margin/padding */
         line-height: 1.3;
       }
 
       .banner-subtext {
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.8);
-        margin: 4px 0 0 0;
-        padding: 0;
-        line-height: 1.4;
+        font-size: 1rem;
+        color: var(--icpc-light-grey);
+        opacity: 0.9;
+        margin: 5px 0 0 0;
       }
 
+      /* --- Countdown Timer Styling --- */
       .timer-container {
         display: flex;
-        gap: 10px;
-        background-color: rgba(0, 0, 0, 0.25);
-        padding: 6px 12px;
-        border-radius: 6px;
-        flex-shrink: 0;
+        gap: 15px;
       }
 
       .time-block {
         display: flex;
-        align-items: baseline;
-        gap: 3px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(0, 191, 255, 0.2);
+        border-radius: 8px;
+        width: 80px;
+        height: 80px;
       }
 
       .time-value {
-        font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
-        font-size: 1.2rem;
+        font-size: 2.2rem;
         font-weight: 600;
-        /* AUTUMN SKY ACCENT: "Harvest Moon" cream color */
-        color: #fdebd0;
+        color: var(--icpc-glow-cyan);
         line-height: 1;
       }
 
       .time-label {
-        font-size: 0.8rem;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var(--icpc-light-grey);
+        opacity: 0.8;
+        letter-spacing: 1px;
       }
 
+      /* This is hidden by default, shown with JS when timer ends */
       .banner-expired-text {
-        font-size: 1.1rem;
-        font-weight: 500;
-        color: #fdebd0;
         display: none;
+        color: #ff6b6b;
+        font-size: 1.2rem;
+        font-weight: bold;
       }
 
+      /* --- Right Side: Actions (Buttons) --- */
       .banner-actions {
         display: flex;
         align-items: center;
-        gap: 20px;
-        flex-shrink: 0;
+        gap: 15px;
+        flex-shrink: 0; /* Prevents buttons from shrinking */
       }
 
       .banner-cta-button {
-        /* AUTUMN SKY BUTTON: Creamy background with dusky text */
-        background-color: #fdebd0;
-        color: #46344e; /* Dark, muted color from the gradient */
-        padding: 10px 24px;
-        border-radius: 6px;
+        background-color: var(--icpc-gold);
+        color: #000;
+        padding: 12px 25px;
+        border-radius: 5px;
         text-decoration: none;
-        font-weight: 700;
-        font-size: 0.95rem;
-        transition: all 0.2s ease;
-        white-space: nowrap;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
       .banner-cta-button:hover {
-        background-color: #fff; /* Brighten on hover */
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
-
-      .banner-cta-button.disabled {
-        background-color: rgba(0, 0, 0, 0.2);
-        color: rgba(255, 255, 255, 0.4);
-        cursor: not-allowed;
-        pointer-events: none;
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
       }
 
       .banner-close-btn {
-        background: none;
+        background: transparent;
         border: none;
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 24px;
+        color: white;
+        font-size: 2.5rem;
+        line-height: 1;
+        padding: 0;
         cursor: pointer;
-        transition: color 0.2s ease, transform 0.2s ease;
+        opacity: 0.7;
+        transition: opacity 0.2s ease, transform 0.2s ease;
       }
 
       .banner-close-btn:hover {
-        color: #fff;
+        opacity: 1;
         transform: rotate(90deg);
       }
 
+      /* --- Shooting Star Animation (Unchanged) --- */
+      .shooting-stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .shooting-stars span {
+        position: absolute;
+        display: block;
+        width: 2px;
+        height: 200px;
+        background: linear-gradient(45deg, var(--icpc-glow-cyan), transparent);
+        filter: blur(1px);
+        animation: animate-star linear infinite;
+      }
+
+      @keyframes animate-star {
+        0% {
+          transform: rotate(45deg) translateY(-250px);
+          opacity: 1;
+        }
+        100% {
+          transform: rotate(45deg) translateY(650px);
+          opacity: 0;
+        }
+      }
+
+      .shooting-stars span:nth-child(1) {
+        top: 0%;
+        left: 50%;
+        animation-duration: 8s;
+        animation-delay: 0s;
+      }
+      .shooting-stars span:nth-child(2) {
+        top: 0%;
+        left: 20%;
+        animation-duration: 12s;
+        animation-delay: -3s;
+      }
+      .shooting-stars span:nth-child(3) {
+        top: 80%;
+        left: 90%;
+        animation-duration: 7s;
+        animation-delay: -5s;
+      }
+      .shooting-stars span:nth-child(4) {
+        top: 10%;
+        left: 80%;
+        animation-duration: 10s;
+        animation-delay: -1s;
+      }
+      .shooting-stars span:nth-child(5) {
+        top: 50%;
+        left: 0%;
+        animation-duration: 15s;
+        animation-delay: -10s;
+      }
+
+      /* --- Responsive Design for Smaller Screens --- */
       @media (max-width: 900px) {
         .countdown-banner-content {
           flex-direction: column;
-          align-items: center;
           text-align: center;
-          gap: 20px;
         }
         .banner-info {
-          flex-direction: column;
+          text-align: center;
           align-items: center;
-          gap: 16px;
+        }
+        .banner-actions {
+          flex-direction: column;
+          width: 100%;
+        }
+        .banner-cta-button {
+          width: 80%;
+          text-align: center;
+        }
+        .banner-close-btn {
+          position: absolute;
+          top: -15px;
+          right: -10px;
         }
       }
-      /* END: "AUTUMN SKY" BANNER CSS */
     </style>
 
     <!-- END OF BANNER -->
@@ -263,7 +350,7 @@
         // Self-invoking function to avoid global scope pollution
         // --- CONFIGURATION ---
         // SET YOUR DEADLINE HERE!
-        const registrationEndDate = '2025-09-16T00:00:00';
+        const registrationEndDate = '2025-10-28T00:00:00';
         // -------------------
 
         const bannerContainer = document.getElementById('countdown-banner');
