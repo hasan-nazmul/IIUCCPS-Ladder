@@ -855,7 +855,7 @@ form textarea {
 .profile-info .stat-value {
   font-size: 1.5em;
   font-weight: 600;
-  color: var(--text-primary);
+  /* color: var(--text-primary); */
 }
 
 .profile-info .handle {
@@ -893,4 +893,9 @@ form textarea {
 }
 .rank-legendary-grandmaster {
   color: #ff0000;
+}
+.toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

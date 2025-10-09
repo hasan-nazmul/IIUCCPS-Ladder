@@ -263,6 +263,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const rankClassName = getRankClassName(userInfo.rank);
 
+    console.log(rankClassName);
+
     container.innerHTML = `
         <div class="stat-block">
             <span class="stat-label">Handle</span>
@@ -536,6 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tagsToggle.addEventListener('change', () => {
       tagsContainer.classList.toggle('hidden');
+      logicToggleGroup.classList.toggle('hidden');
       logicToggleGroup.style.display = tagsToggle.checked ? 'flex' : 'none';
     });
 
