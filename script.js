@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
           statusText = '✔ Solved';
         } else if (status === 'ATTEMPTED') {
           statusClass = 'status-attempted';
-          statusText = '👍 Tried';
+          statusText = '👍Tried';
         }
 
         const link = `https://codeforces.com/problemset/problem/${p.contestId}/${p.index}`;
